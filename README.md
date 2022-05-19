@@ -1,2 +1,2 @@
 # Tkinter-Project
-Sceientific_Calculator
+Scientific_Calculator
