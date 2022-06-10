@@ -1,2 +1,239 @@
+#include<conio.h>
+#include<stdio.h>
+#include<iostream>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
 
-lknknlnds
+#define cout std::cout
+#define cin std::cin
+#define en std::endl
+#define pr printf
+#define sc scanf
+
+/*TREE Data-Structure:
+                It is a non-Linear data structure, which consists of branching nodes,of various forms.
+                A Tree may be Bi-Noded[Binary Tree] or Multi-Noded.
+
+                NODE->The data element which, stores Data and links the tree elements at any point.
+                PATH->The Way of Traversal/Connection between two non-adjacent Nodes.
+                LINK->The Connection between two Adjacent Nodes.33
+                DEGREE->N.O of Branches of a Specific Node.
+                LEAF NODE->It is the node with left or right child, referring/Pointing to NULL.
+                HEIGHT->The N.O of Level of a Binary tree(h).
+
+                FORMULAS:
+                1.N.O of Nodes of a Binary Tree->           [2^(h+1)-1]
+                2.N.O o Node in level n of a Binary tree->  [2^(n-2)] 
+                3.N.O of leaf nodes(Binary Tree) = [N.O of Nodes with degree 2 + 1]
+                NOTE:
+                1.The Tree may consists of Many branches which may form Subsequent, undefined number of Branches.
+                
+                TYPES:
+                        1.Binary Tree.
+                        2.Binary Search Tree.
+                        3.AVL Tree->[Self-Branching Binary Search Tree].
+                        4.B-Tree.
+                Binary tree:
+                            The Tree data Structure ,has the property
+                            Degree of nodes = 2(exactly).
+                    Types:
+                        1.Left-Skewed Tree,
+                                    Binary tree, which has only left child nodes.
+                        2.Right skewed Binary Tree,
+                                    Binary, Which has only right child nodes.
+                        3.Full Binary Tree,
+                                    The complete Tree, in which every ,
+                                    every Non-leaf Node has exactly two children
+                                    All nodes are on same level.
+                        4.Complete Binary Tree,
+                                    Similar to Full Binary Tree,
+                                    but all nodes are not on same level.
+                        5.Extended Binary Tree,
+                                    The Extended imcomplete binart tree into an complete Binary Tree, By filling all the 
+                                    Null Node into a Special Node.
+                                    Special Node->External Node.
+                                    Normal Node->Internal Node.
+                        
+
+
+*/
+
+int m=1,j=0,n=0;
+typedef struct node
+{
+int data;
+struct node *left;
+struct node *right;
+}tree;
+tree *tar[100];
+int main1()
+{
+    tree *n,*m,*s,node11,node21,node22; // the pointer is only just a address storing variable, it can be used only if it holds the address of another variable.
+    n=&node11;
+    printf("Started");
+    scanf("%d",&n->data);
+    printf("Value: %d",n->data);
+    m=&node21;
+    n->left=m;
+    m->left=NULL;
+    m->right=NULL;
+    printf("Left: ");
+    scanf("%d",&m->data);
+    //printf("%d\n",m->data);
+    s=&node22;
+    n->right=s;
+    s->left=NULL;
+    s->right=NULL;
+    printf("Right:");
+    scanf("%d",&s->data);
+    //printf("%d\n",s->data);
+    n=&node11;
+    printf("Left: %d\n",n->left->data);
+    printf("Right: %d\n",n->right->data);
+    return 0;
+}
+
+tree* initialize_value(tree *node)
+{
+    printf("Enter the Value: ");
+    scanf("%d",&node->data);
+    node->left=NULL;
+    node->right=NULL;
+    return node;
+}
+
+tree *create_node(tree* root)
+{
+    tree *temp;
+    int siz=sizeof(root);
+    temp=(tree*) malloc (siz);
+    temp=initialize_value(temp);
+    return temp;
+}
+
+tree* create_tree(tree* temp,int l1,int l2)
+{    
+    tar[n]=temp;
+    n++;
+    l1--;
+    if(l1<=0)
+        return temp;
+    temp->left=create_node(temp->left);
+    temp->right=create_node(temp->right);
+    temp->left=create_tree(temp->left,l1,l2);
+    temp->right=create_tree(temp->right,l1,l2);
+    return temp;
+}
+
+void enq(tree* t)
+{
+    
+}
+/*
+
+void print_tree(tree* t)
+{
+    enq(t);
+    printf("%d",t->data);
+    //printf(" %d ",t->data);
+    //j++;
+    //printf("|%d %d|",m,j);
+    if(m==j)
+    {
+        //printf("|%d %d|",m,j);
+        m*=2;
+        m++;
+        printf("\n");
+    }
+    if(t->left!=NULL)
+    {
+        print_tree(t->left);
+        print_tree(t->right);
+    }
+}
+
+
+void print_LO(tree* t)
+{
+    while()
+}
+    
+    printf("%20d \n",t->data);
+    b=t;
+    while(a!=0)
+    {
+        temp=b;
+        c='l';
+        for(i=1;i<=m;i++)
+        {
+            printf("%d ",temp->data);
+        }
+        printf("\n");
+        m+=1;
+        c='l';
+        a--;
+    }*/
+
+
+int main()
+{
+    // clrscr();
+    int i,a=6;
+    tree *btree,temp,*b;
+    btree=&temp;
+    btree=initialize_value(btree);
+    btree=create_tree(btree,4,5);
+    //btree=create_tree();
+    //btree=initialize_values(btree);
+    //pr("Value :%d %d %d",btree->data,btree->left,btree->right);
+    //printf("This is a Temporary Code execution file:");
+    /*//printf("%d\n%d\n%d\n%d\n%d",btree->data,btree->left->data,btree->left->left->data);
+    for(i=0;i<=7;i++)
+    printf("$%d ",tar[i]->data);
+    b=btree;*/
+    print_LO(btree);
+    b=btree;
+    printf("\n");
+    printf("%d\n",b->data);      //printf("%d\n",tar[0]->data);
+    printf("%d ",b->left->data); //printf("%d ",tar[1]->data);
+    printf("%d \n",b->right->data);
+    printf("%d ",b->left->left->data);
+    printf("%d ",b->left->right->data);
+    printf("%d ",b->right->left->data);
+    printf("%d \n",b->right->right->data);
+    printf("%d ",b->left->left->left->data);
+    printf("%d ",b->left->left->right->data);
+    printf("%d ",b->left->right->left->data);
+    printf("%d ",b->left->right->right->data);
+    printf("%d ",b->right->left->left->data);
+    printf("%d ",b->right->left->right->data);
+    printf("%d ",b->right->right->left->data);
+    printf("%d ",b->right->right->right->data);
+    /*
+    printf("%d ",b->data->->->->);
+    printf("%d ",b->data->->->->);
+    printf("%d ",b->data->->->->);
+    printf("%d ",b->data->->->->);
+    printf("%d ",b->data->->->->);
+    printf("%d ",b->data->->->->);
+    printf("%d ",b->data->->->->);
+    printf("%d ",b->data->->->->);
+    */
+    printf("\n");
+    while(b!=NULL)
+    {
+        printf("%d ",b->data);
+        b=b->left;
+        a--;
+    }
+    printf("\n");
+    b=btree;
+    while(b!=NULL)
+    {
+        printf("%d ",b->data);
+        b=b->right;
+        a--;
+    }
+return 0;
+}
