@@ -1,6 +1,5 @@
 #include<conio.h>
 #include<stdio.h>
-//#include<iostream.h>
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
@@ -66,7 +65,8 @@ int data;
 struct node *left;
 struct node *right;
 }tree;
-tree *tar[100];
+tree *tar[100],*lt[100];
+int f=0,r=0;
 int main1()
 {
     tree *n,*m,*s,node11,node21,node22; // the pointer is only just a address storing variable, it can be used only if it holds the address of another variable.
@@ -126,9 +126,64 @@ tree* create_tree(tree* temp,int l1,int l2)
     return temp;
 }
 
+int isemp()
+{
+    if(f==-1 && r==-1)
+        return 1;
+    else
+        return 0;
+}
+
+int dq(tree **t)
+{
+    if(isemp())
+    return -1;
+    if(f==r)
+        {
+            f=-1;
+            r=-1;
+        }
+    else
+    f++;
+    *t=lt[f];
+    //printf("$%d$",lt[f]->data);
+    return 0;
+}
 void enq(tree* t)
 {
-    
+    if(isemp())
+    {
+        f=0;
+        r=0;
+    }
+    else
+    r++;
+    lt[r]=t;
+  //printf("|%d|",lt[r]->data);
+
+}
+
+
+void print_LO(tree* t)
+{
+    enq(t);
+    printf("^%d^",t->data);
+    //printf("%d",lt[0]->data);
+    while(!isemp())
+    {
+        //printf("^%d^",t->data);
+        printf("*%d %d*",f,r);
+        dq(&t);
+        printf("*%d %d*",f,r);
+        //printf("(%d)",t->data);
+        if(t!=NULL)
+        {
+            printf(" %d ",t->data);
+            enq(t->left);
+            enq(t->right);
+        }
+        printf("\n");
+    }
 }
 /*
 
@@ -183,7 +238,7 @@ int main()
     tree *btree,temp,*b;
     btree=&temp;
     btree=initialize_value(btree);
-    btree=create_tree(btree,4,5);
+    btree=create_tree(btree,3,5);
     //btree=create_tree();
     //btree=initialize_values(btree);
     //pr("Value :%d %d %d",btree->data,btree->left,btree->right);
@@ -193,6 +248,11 @@ int main()
     printf("$%d ",tar[i]->data);
     b=btree;*/
     print_LO(btree);
+    printf("$");
+    for(i=1;i<10;i++)
+    {
+        printf("%d",lt[i]->data);
+    }
     b=btree;
     printf("\n");
     printf("%d\n",b->data);      //printf("%d\n",tar[0]->data);
